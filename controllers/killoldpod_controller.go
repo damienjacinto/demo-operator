@@ -73,7 +73,7 @@ func (r *KillOldPodReconciler) Reconcile(ctx context.Context, req ctrl.Request) 
 
 	// Filter the Pods that haven't been updated for the specified number of days
 	threshold := time.Now().AddDate(0, 0, -1*int(killOldPod.Spec.Minutes))
-	mylog.Info("Threshold", threshold)
+	mylog.Info(threshold.String())
 	oldPods := []corev1.Pod{}
 	for _, pod := range podList.Items {
 		if pod.CreationTimestamp.Time.Before(threshold) {
