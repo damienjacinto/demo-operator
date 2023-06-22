@@ -69,7 +69,7 @@ func (r *KillOldPodReconciler) Reconcile(ctx context.Context, req ctrl.Request) 
 	if err != nil {
 		return ctrl.Result{}, err
 	}
-	mylog.Info("Number of pod in namespace", "nb", podList.Size())
+	mylog.Info("Number of pod in namespace", "nb", len(podList.Items))
 
 	// Filter the Pods that haven't been updated for the specified number of days
 	threshold := time.Now().AddDate(0, 0, -1*int(killOldPod.Spec.Minutes))
